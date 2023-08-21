@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/app/data.service';
+import { UserModel } from 'src/app/models/user.model';
+import { SecurityUtil } from 'src/app/utils/Security.util';
 
 @Component({
   selector: 'app-login',
@@ -37,12 +39,43 @@ export class LoginPage implements OnInit {
     this.hide = !this.hide;
   }
 
-  submit(){
+  async submit(){
+    if (this.form.invalid)
+      return;
 
+    const loading = await this.loadingCtrl.create({ message: 'Autenticando...' });
+    loading.present();
+
+    this
+      .service
+      .authenticate(this.form.value)
+      .subscribe(
+        (res: any) => {
+          SecurityUtil.set(res);
+          loading.dismiss();
+          this.navCtrl.navigateRoot('/');
+        },
+        (err) => {
+          this.showError('Usuário ou senha inválidos');
+          loading.dismiss();
+        });
+  }
+
+  async showError(message: string) {
+    const error = await this.toastCtrl.create({ message: message, buttons: [
+      {
+        icon: 'close',
+        // text: 'Fechar',
+        htmlAttributes: {
+          'aria-label': 'close',
+        },
+      },
+    ], duration: 3000 });
+    error.present();
   }
 
   resetPassword(){
-    
+
   }
 
 }
