@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { MonthlySalesChartComponent } from 'src/app/components/monthly-sales-chart/monthly-sales-chart.component';
 
 
 @NgModule({

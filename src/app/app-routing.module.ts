@@ -1,28 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { FramePage } from './pages/shared/frame/frame.page';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/account/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'frame',
-    loadChildren: () => import('./pages/shared/frame/frame.module').then( m => m.FramePageModule)
-  },
-  {
-    path: 'frameless',
-    loadChildren: () => import('./pages/shared/frameless/frameless.module').then( m => m.FramelessPageModule)
-  },
+  { path: 'login', loadChildren: () => import('./pages/account/login/login.module').then(m => m.LoginPageModule) },
+  { path: '',
+    component: FramePage,
+    // canActivate: [AuthorizedGuard],
+    children: [
+      { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
+      // { path: 'orders', loadChildren: './pages/store/orders/orders.module#OrdersPageModule' },
+      // { path: 'orders/:number', loadChildren: './pages/store/order-details/order-details.module#OrdersPageModule' },
+    ] }
 ];
 
 @NgModule({
