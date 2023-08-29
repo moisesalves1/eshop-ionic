@@ -74,8 +74,14 @@ export class LoginPage implements OnInit {
     error.present();
   }
 
-  resetPassword(){
+  async resetPassword() {
+    if (this.form.controls['username'].invalid){
+      this.showError("Usuário inválido");
+      return;
+    }
 
+    const loading = await this.loadingCtrl.create({ message: 'Restaurando sua senha...' });
+    loading.present();
   }
 
 }
