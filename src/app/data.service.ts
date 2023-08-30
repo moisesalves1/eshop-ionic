@@ -19,6 +19,7 @@ export class DataService {
   }
 
   public getOrders() {
+    
     return this.http.get(`${this.baseUrl}/v1/orders`);
   }
 

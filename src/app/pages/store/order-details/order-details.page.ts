@@ -18,9 +18,9 @@ export class OrderDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    let number = this.route.snapshot.paramMap.get('number');
+    let id = this.route.snapshot.paramMap.get('number');
     this.service
-      .getOrder(number)
+      .getOrder(id)
       .subscribe((data) => {
         this.order = data;
       })
