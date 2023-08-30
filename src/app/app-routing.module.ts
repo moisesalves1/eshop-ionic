@@ -11,9 +11,16 @@ const routes: Routes = [
     canActivate: [AuthorizedGuard],
     children: [
       { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
-      // { path: 'orders', loadChildren: './pages/store/orders/orders.module#OrdersPageModule' },
-      // { path: 'orders/:number', loadChildren: './pages/store/order-details/order-details.module#OrdersPageModule' },
-    ] }
+      {
+        path: 'orders',
+        loadChildren: () => import('./pages/store/orders/orders.module').then( m => m.OrdersPageModule)
+      },
+      {
+        path: 'orders/:number',
+        loadChildren: () => import('./pages/store/order-details/order-details.module').then( m => m.OrderDetailsPageModule)
+      }
+    ] },
+
 ];
 
 @NgModule({
