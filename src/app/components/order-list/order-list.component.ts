@@ -24,7 +24,7 @@ export class OrderListComponent  implements OnInit {
       })
   }
 
-  goToOrder(order: number){
+  goToOrder(order: string){
     this.navCtrl.navigateRoot(`/orders/${order}`);
   }
 

@@ -22,7 +22,7 @@ export class DataService {
     return this.http.get(`${this.baseUrl}/v1/orders`);
   }
 
-  public getOrder(order: string) {
+  public getOrder(order: string|null) {
     return this.http.get(`${this.baseUrl}/v1/orders/${order}`);
   }
 }
