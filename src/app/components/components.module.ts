@@ -6,6 +6,7 @@ import { MonthlySalesChartComponent } from './monthly-sales-chart/monthly-sales-
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderStatusBadgeComponent } from './order-status-badge/order-status-badge.component';
 
 
 
@@ -15,7 +16,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     MonthlySalesChartComponent,
     NavbarComponent,
     UserCardComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderStatusBadgeComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     MonthlySalesChartComponent,
     NavbarComponent,
     UserCardComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderStatusBadgeComponent
   ]
 })
 export class ComponentsModule { }
