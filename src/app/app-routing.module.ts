@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { FramePage } from './pages/shared/frame/frame.page';
+import { AuthorizedGuard } from './guards/authorized.guard';
+import { ManagerGuard } from './guards/manager.guard';
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./pages/account/login/login.module').then(m => m.LoginPageModule) },
   { path: '',
     component: FramePage,
-    // canActivate: [AuthorizedGuard],
+    canActivate: [AuthorizedGuard],
     children: [
       { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
       // { path: 'orders', loadChildren: './pages/store/orders/orders.module#OrdersPageModule' },
